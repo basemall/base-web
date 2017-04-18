@@ -50,13 +50,13 @@
 
 	<distributionManagement>
 		<snapshotRepository>
-			<id>user-snapshot</id>
+			<id>snapshot</id>
 			<name>User Porject Snapshot</name>
 			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
 			<uniqueVersion>true</uniqueVersion>
 		</snapshotRepository>
 		<repository>
-			<id>user-release</id>
+			<id>release</id>
 			<name>User Porject Release</name>
 			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
 		</repository>

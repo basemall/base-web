@@ -3,6 +3,7 @@ package com.ibase.mall.web.rpc;
 import com.ibase.mall.cart.response.QueryCartInforResp;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @ClassName CartInfoRpcService
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @FeignClient("base-cart-rpc")
 public interface CartInfoRpcService {
+
     @GetMapping(value = "/cart/getCartInfo")
-    QueryCartInforResp getCartInfoByUserId(Long userId);
+    QueryCartInforResp getCartInfoByUserId(@RequestParam("userId")Long userId);
+
 }

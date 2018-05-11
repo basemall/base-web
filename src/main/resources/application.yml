@@ -1,0 +1,72 @@
+spring: 
+  datasource: 
+    druid: 
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: ${config.jdbc.pool.initialSize}
+      max-active: ${config.jdbc.pool.maxActive}
+      min-idle: ${config.jdbc.pool.minIdle}
+      max-wait: ${config.jdbc.pool.maxWait}
+      validation-query: SELECT 'x'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      cart:
+        url: ${config.jdbc.url}
+        username: ${config.jdbc.username}
+        password: ${config.jdbc.password}
+  aop: 
+    proxy-target-class: true
+  redis:
+        database: 0
+        host: 127.0.0.1
+        password:
+        pool:
+            max-active: 300
+            max-idle: 100
+            max-wait: 1000
+            min-idle: 0
+        port: 6379
+        timeout: 2000
+
+redis:
+  timeout: 2000
+  maxActive: 300
+  maxIdle: 100
+  maxWait: 1000
+  testOnBorrow: true
+  testWhileIdle: true
+  cluster:
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
+
+
+kafka:
+    consumer:
+        auto:
+            commit:
+                interval: 100
+            offset:
+                reset: latest
+        concurrency: 10
+        enable:
+            auto:
+                commit: true
+        group:
+            id: springcloud-quickstart
+        servers: ${kafka.default.bootstrap.servers}
+        session:
+            timeout: 6000
+        zookeeper:
+            connect: ${net.zk.address}
+    producer:
+        batch:
+            size: 4096
+        buffer:
+            memory: 40960
+        linger: 1
+        retries: 0
+        servers: ${kafka.default.bootstrap.servers}
+

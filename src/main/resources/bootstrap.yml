@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: base-web
+  cloud:
+    consul:
+      config:
+        enabled: false
+      host: localhost
+      port: 8500
+      discovery:
+        hostname: localhost
+        instance-id: ${spring.application.name}-${spring.cloud.consul.discovery.hostname}-${server.port}
+
+  zipkin:
+     base-url: http://192.168.143.125:9411/
+     enabled: false
+
+  sleuth:
+    sampler:
+      percentage: 1
+    scheduled:
+      skip-pattern: .*ConsulCatalogWatch.*
+
+endpoints:
+  sensitive: true
+  shutdown:
+    enabled: true
+    sensitive: false
+  metrics:
+    sensitive: false
+  health:
+    sensitive: false
+  jmx:
+    enabled: false
+
+server:
+  port: 18003
+
+management:
+  security:
+    enabled: true
+  health:
+    defaults:
+      enabled: false
+
+---
+spring:
+  profiles: default
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+        register: true
+
+---
+spring:
+  profiles: prd
+  zipkin:
+    base-url: http://kita-zipkin.juanpi.com:9411/
+    enabled: true
+  sleuth:
+    enabled: true
+    sampler:
+      percentage: 0.1
+    scheduled:
+      enabled: false

@@ -114,14 +114,24 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.44</version>
     </dependency>
-
-
+    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-redis</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
 
+    <dependency>
+      <groupId>net.sourceforge.nekohtml</groupId>
+      <artifactId>nekohtml</artifactId>
+      <version>1.9.22</version>
+    </dependency>
+
+    <!-- 引入自定义包-->
     <dependency>
 	  <groupId>com.ibase.mall</groupId>
 	  <artifactId>base-common</artifactId>
@@ -152,7 +162,7 @@
 
   <build>
     <defaultGoal>install</defaultGoal>
-    <outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes/</outputDirectory>
+
     <plugins>
       <!-- Compiler 插件, 设定JDK版本 -->
       <plugin>
@@ -172,42 +182,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.4</version>
-      </plugin>
-
-      <!-- war 打包插件, 设定war包名称不带版本号 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <packagingExcludes>
-            <!-- WEB-INF/classes/com/thinkgem/jeesite/** -->
-            WEB-INF/classes/org/apache/ibatis/**,
-            WEB-INF/classes/org/mybatis/spring/**
-          </packagingExcludes>
-          <warSourceExcludes>
-            static/bootstrap/2.3.1/docs/**,
-            static/ckeditor/_samples/**,
-            static/ckeditor/_source/**,
-            static/ckfinder/_samples/**,
-            static/ckfinder/help/**,
-            static/compressor*/**,
-            static/jquery-jbox/2.3/docs/**,
-            static/jquery-jbox/2.3/Skins2/**,
-            static/jquery-validation/1.11.0/demo/**,
-            static/jquery-ztree/3.5.12/demo/**,
-            static/My97DatePicker/docs/**,
-            static/supcan/doc/**,
-            static/SuperSlide/demo/**,
-            static/treeTable/demo/**<!-- , -->
-            <!-- userfiles/** --><!-- ,/**/*.jsp -->
-            ,
-            test/**
-          </warSourceExcludes>
-          <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory><!--
-						<webXml>${project.basedir}/target/jspweb.xml</webXml> -->
-          <warName>${project.artifactId}</warName>
-        </configuration>
       </plugin>
 
       <!-- resource插件 -->

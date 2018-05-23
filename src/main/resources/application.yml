@@ -29,6 +29,8 @@ spring:
             min-idle: 0
         port: 6379
         timeout: 2000
+  thymeleaf:
+        mode: LEGACYHTML5
 
 redis:
   timeout: 2000
